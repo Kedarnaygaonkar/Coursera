@@ -1,0 +1,56 @@
+<!-- course_list_bootstrap.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OnlineCourse — All Courses</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'onlinecourse:index' %}">📚 OnlineCourse</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        {% if user.is_authenticated %}
+          <li class="nav-item"><span class="nav-link text-light">{{ user.first_name }}</span></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'onlinecourse:logout' %}">Logout</a></li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'onlinecourse:login' %}">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'onlinecourse:registration' %}">Register</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <h2 class="mb-4">Available Courses</h2>
+  <div class="row">
+    {% for course in course_list %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          {% if course.image %}
+            <img src="{{ course.image.url }}" class="card-img-top" style="height:180px;object-fit:cover;" alt="{{ course.name }}" />
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ course.name }}</h5>
+            <p class="card-text text-muted small">{{ course.description|truncatechars:100 }}</p>
+          </div>
+          <div class="card-footer">
+            <a href="{% url 'onlinecourse:course_details' course.id %}" class="btn btn-primary btn-sm">View Course</a>
+            {% if course.is_enrolled %}
+              <span class="badge bg-success ms-2">Enrolled</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No courses available.</p>
+    {% endfor %}
+  </div>
+</div>
+</body>
+</html>
+
