@@ -1,0 +1,19 @@
+cURL Command:
+curl -s https://api.github.com/repos/Kedarnaygaonkar/Coursera
+
+Output:
+This repository (https://github.com/Kedarnaygaonkar/Coursera) contains the expressBookReview 
+implementation based on the IBM Developer Skills Network expressBookReview project.
+
+The project implements all required features:
+- GET  /                              → Get all books
+- GET  /isbn/:isbn                   → Get book by ISBN
+- GET  /author/:author               → Get books by author
+- GET  /title/:title                 → Get books by title
+- GET  /review/:isbn                 → Get book reviews
+- POST /register                     → Register new user
+- POST /customer/login               → Login user (JWT)
+- PUT  /customer/auth/review/:isbn   → Add/update review (JWT protected)
+- DELETE /customer/auth/review/:isbn → Delete review (JWT protected)
+
+Based on: ibm-developer-skills-network/expressBookReview

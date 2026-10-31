@@ -1,0 +1,8 @@
+cURL Command:
+curl -X GET http://localhost:5000/review/1
+
+Output:
+{
+  "isbn": "1",
+  "reviews": {}
+}

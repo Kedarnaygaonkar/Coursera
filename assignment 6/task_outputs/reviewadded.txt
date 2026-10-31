@@ -1,0 +1,10 @@
+cURL Command:
+curl -X PUT "http://localhost:5000/customer/auth/review/1?review=Absolutely%20brilliant%20novel" -H "Authorization: Bearer <token>"
+
+Output:
+{
+  "message": "Review for ISBN 1 added/updated successfully.",
+  "reviews": {
+    "testuser": "Absolutely brilliant novel"
+  }
+}
